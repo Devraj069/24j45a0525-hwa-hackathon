@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { getOrder } from "@/lib/orders";
+import { getOrder, updateOrderStatus } from "@/lib/orders";
+import type { Order } from "@/lib/types";
 
 export const runtime = "nodejs";
 
@@ -18,4 +19,37 @@ export async function GET(
   }
 
   return NextResponse.json({ ok: true, order });
+}
+
+export async function PUT(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  const body = (await request.json().catch(() => ({}))) as {
+    status?: string;
+  };
+
+  const nextStatus = body.status;
+  if (
+    nextStatus !== "placed" &&
+    nextStatus !== "confirmed" &&
+    nextStatus !== "cancelled"
+  ) {
+    return NextResponse.json(
+      { ok: false, error: "Invalid status" },
+      { status: 400 }
+    );
+  }
+
+  const updated = await updateOrderStatus(id, nextStatus as Order["status"]);
+
+  if (!updated) {
+    return NextResponse.json(
+      { ok: false, error: "Order not found" },
+      { status: 404 }
+    );
+  }
+
+  return NextResponse.json({ ok: true, order: updated });
 }

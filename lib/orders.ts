@@ -59,3 +59,18 @@ export async function getOrder(id: string): Promise<Order | undefined> {
   const orders = await readOrders();
   return orders.find((order) => order.id === id);
 }
+
+export async function updateOrderStatus(
+  id: string,
+  status: Order["status"]
+): Promise<Order | undefined> {
+  const orders = await readOrders();
+  const index = orders.findIndex((order) => order.id === id);
+  if (index === -1) {
+    return undefined;
+  }
+  const updated: Order = { ...orders[index], status };
+  orders[index] = updated;
+  await writeOrders(orders.slice(0, 500));
+  return updated;
+}

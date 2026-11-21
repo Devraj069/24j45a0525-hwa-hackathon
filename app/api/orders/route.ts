@@ -27,6 +27,7 @@ export async function GET() {
     ok: true,
     service: "Happy While Away orders",
     count: orders.length,
+    orders,
   });
 }
 

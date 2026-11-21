@@ -13,7 +13,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "@/components/product-card";
 import { ProductVisual } from "@/components/product-visual";
 import { getFeaturedProducts, products } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
@@ -22,15 +21,6 @@ const fadeUp = {
   hidden: { opacity: 0, y: 26 },
   show: { opacity: 1, y: 0 },
 };
-
-const categoryTiles = [
-  { label: "Toys", emoji: "🧸", accent: "#b5566f" },
-  { label: "Feeders", emoji: "🥣", accent: "#4a76b8" },
-  { label: "Beds & Comfort", emoji: "🛏️", accent: "#5b6b8c" },
-  { label: "Grooming", emoji: "🪥", accent: "#6b5b8c" },
-  { label: "Treats", emoji: "🍖", accent: "#8a6f4e" },
-  { label: "Walk & Travel", emoji: "🦮", accent: "#2f7f8c" },
-];
 
 const valueProps = [
   {
@@ -239,78 +229,47 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container-px py-16">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <span className="eyebrow">Shop by need</span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
-              Find their new favourite
-            </h2>
-          </div>
-          <Link
-            href="/products"
-            className="flex items-center gap-1 text-sm font-bold text-primary hover:underline"
-          >
-            Browse everything <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {categoryTiles.map((tile, index) => (
-            <motion.div
-              key={tile.label}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={fadeUp}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-            >
-              <Link
-                href={`/products?category=${encodeURIComponent(tile.label)}`}
-                className="group flex flex-col items-center gap-3 rounded-2xl border bg-card px-3 py-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-              >
-                <span
-                  className="flex h-14 w-14 items-center justify-center rounded-2xl text-3xl transition group-hover:scale-110"
-                  style={{ backgroundColor: `${tile.accent}18` }}
-                >
-                  {tile.emoji}
-                </span>
-                <span className="text-sm font-bold">{tile.label}</span>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
       <section className="container-px py-6">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <span className="eyebrow">Loved by dogs</span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
-              Bestsellers & new favourites
-            </h2>
-          </div>
-          <Link
-            href="/products"
-            className="flex items-center gap-1 text-sm font-bold text-primary hover:underline"
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
           >
-            View all <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((product, index) => (
-            <motion.div
-              key={product.slug}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={fadeUp}
-              transition={{ duration: 0.45, delay: (index % 4) * 0.06 }}
-            >
-              <ProductCard product={product} />
-            </motion.div>
-          ))}
+            <ProductVisual
+              emoji="🎾"
+              accent="#4a76b8"
+              name="PawQuest Puzzle Ball"
+              className="aspect-square w-full rounded-[2.5rem]"
+              emojiClassName="text-[9rem]"
+            />
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="eyebrow">The one and only</span>
+            <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+              The PawQuest Puzzle Ball
+            </h2>
+            <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
+              {featured[0].short}
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Button asChild size="lg" className="rounded-full px-7">
+                <Link href="/products/pawquest-puzzle-ball">
+                  Meet the product <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full border-brand/30 bg-white/60 px-7">
+                <Link href="/products">Shop all</Link>
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
