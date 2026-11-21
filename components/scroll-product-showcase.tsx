@@ -80,7 +80,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
         defaults: { ease: "none" },
         scrollTrigger: {
           trigger: root,
-          start: "top top",
+          start: "top 50%",
           end: "bottom bottom",
           scrub: 0.25,
         },
@@ -89,27 +89,29 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
       tl.to(
         image,
         {
-          keyframes: [
-            {
-              xPercent: 36,
-              rotation: 0,
-              scale: 1,
-              opacity: 1,
-              duration: 0.3,
-              ease: "power2.out",
-            },
-            { xPercent: -36, rotation: -300, duration: 1.2 },
-            {
-              xPercent: -26,
-              rotation: -360,
-              scale: 3.4,
-              duration: 0.6,
-              ease: "power2.inOut",
-            },
-          ],
+          xPercent: 36,
+          rotation: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
         },
         0
-      ).to(content, { opacity: 0, y: -40, duration: 0.5 }, 1.5);
+      )
+        .to(image, { xPercent: 36, rotation: 0, duration: 0.33 }, 0.3)
+        .to(image, { xPercent: -36, rotation: -300, duration: 1.15 }, 0.63)
+        .to(
+          image,
+          {
+            xPercent: -26,
+            rotation: -360,
+            scale: 3.4,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          1.78
+        )
+        .to(content, { opacity: 0, y: -40, duration: 0.5 }, 1.78);
     });
 
     mm.add("(max-width: 1023px)", () => {
@@ -122,7 +124,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
         defaults: { ease: "none" },
         scrollTrigger: {
           trigger: root,
-          start: "top top",
+          start: "top 50%",
           end: "bottom bottom",
           scrub: 0.25,
         },
@@ -131,27 +133,29 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
       tl.to(
         image,
         {
-          keyframes: [
-            {
-              xPercent: 0,
-              rotation: 0,
-              scale: 0.95,
-              opacity: 1,
-              duration: 0.3,
-              ease: "power2.out",
-            },
-            { xPercent: -30, rotation: -300, duration: 1.2 },
-            {
-              xPercent: -18,
-              rotation: -360,
-              scale: 3.4,
-              duration: 0.6,
-              ease: "power2.inOut",
-            },
-          ],
+          xPercent: 0,
+          rotation: 0,
+          scale: 0.95,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
         },
         0
-      ).to(content, { opacity: 0, y: -30, duration: 0.5 }, 1.5);
+      )
+        .to(image, { xPercent: 0, rotation: 0, duration: 0.33 }, 0.3)
+        .to(image, { xPercent: -30, rotation: -300, duration: 1.15 }, 0.63)
+        .to(
+          image,
+          {
+            xPercent: -18,
+            rotation: -360,
+            scale: 3.4,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          1.78
+        )
+        .to(content, { opacity: 0, y: -30, duration: 0.5 }, 1.78);
     });
 
     return () => mm.revert();
