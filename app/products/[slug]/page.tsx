@@ -117,16 +117,18 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
       </div>
 
-      <section className="mt-16">
-        <h2 className="font-display text-2xl font-extrabold text-brand-navy sm:text-3xl">
-          You might also like
-        </h2>
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {related.map((item) => (
-            <ProductCard key={item.slug} product={item} />
-          ))}
-        </div>
-      </section>
+      {related.length > 0 && (
+        <section className="mt-16">
+          <h2 className="font-display text-2xl font-extrabold text-brand-navy sm:text-3xl">
+            You might also like
+          </h2>
+          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {related.map((item) => (
+              <ProductCard key={item.slug} product={item} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
