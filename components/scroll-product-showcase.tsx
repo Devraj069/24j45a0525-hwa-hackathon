@@ -32,7 +32,7 @@ function BenefitBlock({
   items: string[];
 }) {
   return (
-    <div className="rounded-2xl border bg-card/85 p-3 shadow-sm backdrop-blur sm:p-4">
+    <div className="rounded-2xl border bg-card/90 p-3 shadow-sm backdrop-blur sm:p-4">
       <p className="flex items-center gap-2 font-display text-sm font-bold text-brand-navy sm:text-base">
         <span className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-primary">
           <Icon className="h-4 w-4" />
@@ -56,14 +56,16 @@ function BenefitBlock({
 
 export function ScrollProductShowcase({ product }: { product: Product }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const pinRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const root = rootRef.current;
+    const pin = pinRef.current;
     const content = contentRef.current;
     const image = imageRef.current;
-    if (!root || !content || !image) return;
+    if (!root || !pin || !content || !image) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -71,62 +73,81 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 1024px)", () => {
-      gsap.set(image, { xPercent: 36, yPercent: 0, rotation: 0, scale: 1, opacity: 1 });
+      gsap.set(image, { xPercent: 34, rotation: 0, scale: 1, opacity: 1 });
       if (reduced) return;
 
-      gsap.set(image, { xPercent: 180, yPercent: 0, rotation: 220, scale: 0.55, opacity: 0 });
+      gsap.set(image, { xPercent: 180, rotation: 220, scale: 1, opacity: 0 });
+
+      // Pin the showcase section with spacer to eliminate empty tail
+      ScrollTrigger.create({
+        trigger: root,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 1.2,
+        pin,
+        pinSpacing: true,
+        anticipatePin: 1,
+      });
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
           trigger: root,
           start: "top 50%",
-          end: "bottom bottom",
-          scrub: 0.25,
+          end: () => "+=" + window.innerHeight * 1.7,
+          scrub: 0.3,
+          invalidateOnRefresh: true,
         },
       });
 
+      // Entrance: ball comes from right and settles at the right side
       tl.to(
         image,
         {
           xPercent: 34,
           rotation: 0,
-          scale: 1,
           opacity: 1,
-          duration: 0.3,
-          ease: "power2.out",
+          duration: 0.55,
+          ease: "power1.out",
         },
         0
       )
-        .to(image, { xPercent: 34, rotation: 0, duration: 0.33 }, 0.3)
-        .to(image, { xPercent: -62, rotation: -300, duration: 1.15 }, 0.63)
-        .to(
-          image,
-          {
-            xPercent: -62,
-            rotation: -360,
-            scale: 2.2,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          1.78
-        )
-        .to(content, { opacity: 0, y: -40, duration: 0.5 }, 1.78);
+        // Hold ball at the right side (no further movement)
+        .to(image, { xPercent: 34, rotation: 0, duration: 1.15 }, 0.55);
+
+      // Pin the sticky element inside the root
+      ScrollTrigger.create({
+        trigger: root,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 1.2,
+        pin,
+        pinSpacing: true,
+        anticipatePin: 1,
+      });
     });
 
     mm.add("(max-width: 1023px)", () => {
-      gsap.set(image, { xPercent: 0, yPercent: 0, rotation: 0, scale: 0.95, opacity: 1 });
+      gsap.set(image, { xPercent: 0, rotation: 0, scale: 1, opacity: 1 });
       if (reduced) return;
 
-      gsap.set(image, { xPercent: 180, yPercent: 0, rotation: 220, scale: 0.5, opacity: 0 });
+      gsap.set(image, { xPercent: 180, rotation: 220, scale: 1, opacity: 0 });
+
+      ScrollTrigger.create({
+        trigger: root,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 1.2,
+        pin,
+        pinSpacing: true,
+        anticipatePin: 1,
+      });
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
           trigger: root,
           start: "top 50%",
-          end: "bottom bottom",
-          scrub: 0.25,
+          end: () => "+=" + window.innerHeight * 1.7,
+          scrub: 0.3,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -135,35 +156,24 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
         {
           xPercent: 0,
           rotation: 0,
-          scale: 0.95,
           opacity: 1,
-          duration: 0.3,
-          ease: "power2.out",
+          duration: 0.55,
+          ease: "power1.out",
         },
         0
       )
-        .to(image, { xPercent: 0, rotation: 0, duration: 0.33 }, 0.3)
-        .to(image, { xPercent: -40, rotation: -300, duration: 1.15 }, 0.63)
-        .to(
-          image,
-          {
-            xPercent: -40,
-            rotation: -360,
-            scale: 2.4,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          1.78
-        )
-        .to(content, { opacity: 0, y: -30, duration: 0.5 }, 1.78);
+        .to(image, { xPercent: 0, rotation: 0, duration: 1.15 }, 0.55);
     });
 
     return () => mm.revert();
   }, []);
 
   return (
-    <div ref={rootRef} className="relative h-[170vh] lg:h-[185vh]">
-      <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden">
+    <div ref={rootRef} className="relative">
+      <div
+        ref={pinRef}
+        className="relative flex h-[100svh] items-center overflow-hidden bg-background"
+      >
         <div className="container-px relative grid w-full items-center gap-5 lg:block">
           <div className="pointer-events-none relative z-20 flex justify-center lg:absolute lg:inset-0 lg:items-center">
             <div
