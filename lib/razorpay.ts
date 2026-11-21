@@ -1,23 +1,24 @@
 import crypto from "crypto";
 
 export function isRazorpayConfigured(): boolean {
-  return Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET);
+  const keyId = (process.env.RAZORPAY_KEY_ID ?? "").trim();
+  const keySecret = (process.env.RAZORPAY_KEY_SECRET ?? "").trim();
+  return Boolean(keyId && keySecret);
 }
 
 export function getPublicKeyId(): string | null {
-  return (
-    process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ??
-    process.env.RAZORPAY_KEY_ID ??
-    null
-  );
+  const keyId = (
+    process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? process.env.RAZORPAY_KEY_ID ?? ""
+  ).trim();
+  return keyId || null;
 }
 
 export async function createRazorpayOrder(
   amountInRupees: number,
   receipt: string
 ) {
-  const keyId = process.env.RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+  const keyId = (process.env.RAZORPAY_KEY_ID ?? "").trim();
+  const keySecret = (process.env.RAZORPAY_KEY_SECRET ?? "").trim();
   if (!keyId || !keySecret) {
     throw new Error("Razorpay is not configured");
   }
@@ -53,7 +54,7 @@ export function verifyRazorpaySignature(params: {
   razorpayPaymentId: string;
   signature: string;
 }): boolean {
-  const secret = process.env.RAZORPAY_KEY_SECRET;
+  const secret = (process.env.RAZORPAY_KEY_SECRET ?? "").trim();
   if (!secret) return false;
 
   const expected = crypto
