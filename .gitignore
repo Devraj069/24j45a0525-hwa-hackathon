@@ -11,3 +11,5 @@ hwa-start.*
 .DS_Store
 dist/
 .vercel
+tsconfig.tsbuildinfo
+images/assets/

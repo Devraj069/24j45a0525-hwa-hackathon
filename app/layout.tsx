@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Baloo_2, Nunito } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart-provider";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Toaster } from "@/components/ui/sonner";
@@ -43,6 +44,7 @@ export default function RootLayout({
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <body className="min-h-screen bg-background font-sans text-foreground">
         <CartProvider>
+          <SmoothScroll />
           <SiteHeader />
           <main className="flex min-h-[60vh] flex-col">{children}</main>
           <SiteFooter />

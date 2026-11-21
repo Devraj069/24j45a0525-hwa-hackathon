@@ -4,22 +4,17 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import {
   ArrowRight,
-  Check,
   HeartHandshake,
   Mail,
   MapPin,
   Recycle,
   ShieldCheck,
-  Sparkles,
-  Star,
-  Truck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ProductVisual } from "@/components/product-visual";
+import { Hero } from "@/components/hero";
 import { ScrollProductShowcase } from "@/components/scroll-product-showcase";
 import { ContactForm } from "@/components/contact-form";
 import { products } from "@/lib/products";
-import { formatPrice } from "@/lib/utils";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 26 },
@@ -44,127 +39,12 @@ const aboutValues = [
   },
 ];
 
-const stats = [
-  ["10,000+", "Happy dogs"],
-  ["4.9/5", "Average rating"],
-  ["30-day", "Easy returns"],
-  ["100%", "Non-toxic"],
-];
-
 export default function HomePage() {
   const product = products[0];
 
   return (
     <div className="overflow-hidden">
-      <section className="relative">
-        <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-light/40 blur-3xl" />
-        <div className="pointer-events-none absolute right-0 top-40 h-80 w-80 rounded-full bg-brand-sky blur-3xl" />
-
-        <div className="container-px relative grid items-center gap-12 py-14 md:py-20 lg:grid-cols-2 lg:gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="eyebrow">
-              <Sparkles className="h-3.5 w-3.5" />
-              One product, done right
-            </span>
-            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] text-brand-navy text-balance sm:text-5xl lg:text-6xl">
-              Keep tails wagging while you&apos;re away.
-            </h1>
-            <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              The PawQuest Puzzle Ball turns mealtime into twenty minutes of
-              happy, slow-eating play — even when you&apos;re not home.
-            </p>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Button asChild size="lg" className="rounded-full px-7 text-base">
-                <Link href="#products">
-                  Explore PawQuest
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="rounded-full border-brand/30 bg-white/60 px-7 text-base"
-              >
-                <Link href="#contact">Talk to us</Link>
-              </Button>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1.5 font-semibold">
-                <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                4.9/5 from 2,400+ reviews
-              </span>
-              <span className="flex items-center gap-1.5 font-semibold">
-                <Truck className="h-4 w-4 text-primary" />
-                Free shipping over ₹1,499
-              </span>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative mx-auto w-full max-w-md"
-          >
-            <div className="relative aspect-square rounded-[2.75rem] bg-gradient-to-br from-brand-sky via-white to-brand-light/40 p-5 shadow-2xl shadow-brand/20 ring-1 ring-white/70">
-              <ProductVisual
-                emoji={product.emoji}
-                accent={product.accent}
-                name={product.name}
-                className="h-full w-full"
-                emojiClassName="text-[9rem] sm:text-[11rem]"
-              />
-            </div>
-
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-3 top-8 rounded-2xl bg-white px-4 py-3 shadow-xl sm:-left-6"
-            >
-              <p className="text-xs font-semibold text-muted-foreground">
-                Slow feeder
-              </p>
-              <p className="flex items-center gap-1 font-display font-bold text-emerald-600">
-                <Check className="h-4 w-4" /> 20 min of play
-              </p>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{
-                duration: 4.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1.2,
-              }}
-              className="absolute -bottom-3 left-10 rounded-full bg-brand-navy px-4 py-2 text-sm font-bold text-white shadow-lg"
-            >
-              {formatPrice(product.price)}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="border-y bg-white/60">
-        <div className="container-px grid grid-cols-2 gap-6 py-6 text-center md:grid-cols-4">
-          {stats.map(([value, label]) => (
-            <div key={label}>
-              <p className="font-display text-2xl font-extrabold text-brand-navy">
-                {value}
-              </p>
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                {label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Hero productSlug={product.slug} />
 
       <section id="products" className="scroll-mt-16">
         <ScrollProductShowcase product={product} />
@@ -178,8 +58,7 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeUp}
           >
-            <span className="eyebrow">About us</span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+            <h2 className="font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
               Made by dog people, for dog people.
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
@@ -231,8 +110,7 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeUp}
           >
-            <span className="eyebrow">Contact us</span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+            <h2 className="font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
               Questions? We&apos;re all ears.
             </h2>
             <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
