@@ -89,7 +89,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
       tl.to(
         image,
         {
-          xPercent: 36,
+          xPercent: 34,
           rotation: 0,
           scale: 1,
           opacity: 1,
@@ -98,14 +98,14 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
         },
         0
       )
-        .to(image, { xPercent: 36, rotation: 0, duration: 0.33 }, 0.3)
-        .to(image, { xPercent: -36, rotation: -300, duration: 1.15 }, 0.63)
+        .to(image, { xPercent: 34, rotation: 0, duration: 0.33 }, 0.3)
+        .to(image, { xPercent: -62, rotation: -300, duration: 1.15 }, 0.63)
         .to(
           image,
           {
-            xPercent: -26,
+            xPercent: -62,
             rotation: -360,
-            scale: 3.4,
+            scale: 2.2,
             duration: 0.6,
             ease: "power2.inOut",
           },
@@ -143,13 +143,13 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
         0
       )
         .to(image, { xPercent: 0, rotation: 0, duration: 0.33 }, 0.3)
-        .to(image, { xPercent: -30, rotation: -300, duration: 1.15 }, 0.63)
+        .to(image, { xPercent: -40, rotation: -300, duration: 1.15 }, 0.63)
         .to(
           image,
           {
-            xPercent: -18,
+            xPercent: -40,
             rotation: -360,
-            scale: 3.4,
+            scale: 2.4,
             duration: 0.6,
             ease: "power2.inOut",
           },
@@ -162,13 +162,13 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
   }, []);
 
   return (
-    <div ref={rootRef} className="relative h-[200vh] lg:h-[220vh]">
+    <div ref={rootRef} className="relative h-[170vh] lg:h-[185vh]">
       <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden">
         <div className="container-px relative grid w-full items-center gap-5 lg:block">
           <div className="pointer-events-none relative z-20 flex justify-center lg:absolute lg:inset-0 lg:items-center">
             <div
               ref={imageRef}
-              className="w-[56vw] max-w-[210px] will-change-transform sm:max-w-[260px] lg:w-[46vw] lg:max-w-[520px]"
+              className="w-[66vw] max-w-[250px] will-change-transform sm:max-w-[320px] lg:w-[54vw] lg:max-w-[620px]"
             >
               <Image
                 src="/productpaw-v2.png"
@@ -176,22 +176,22 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
                 width={612}
                 height={408}
                 priority
-                className="h-auto w-full drop-shadow-2xl"
+                className="h-auto w-full drop-shadow-xl"
               />
             </div>
           </div>
 
-          <div ref={contentRef} className="relative z-10 lg:max-w-[24rem]">
-            <h2 className="font-display text-2xl font-extrabold leading-tight text-brand-navy sm:text-4xl lg:text-5xl">
+          <div ref={contentRef} className="relative z-10 lg:w-[36rem]">
+            <h2 className="whitespace-nowrap font-display text-3xl font-extrabold leading-tight text-brand-navy sm:text-4xl lg:text-[2.75rem]">
               {product.name}
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:mt-3 sm:text-base">
+            <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground sm:mt-3 sm:text-base">
               A refillable puzzle feeder that hides kibble or treats inside. As
               your dog rolls and paws it, food drops out through adjustable
               openings — turning mealtime into active, rewarding play.
             </p>
 
-            <div className="mt-4 grid gap-3 sm:mt-6 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="mt-4 grid max-w-xl gap-3 sm:mt-6 sm:grid-cols-2 lg:max-w-[30rem] lg:grid-cols-1">
               <BenefitBlock
                 icon={Dumbbell}
                 title="Physical benefits"

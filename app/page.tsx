@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Hero } from "@/components/hero";
 import { ScrollProductShowcase } from "@/components/scroll-product-showcase";
+import { HowToUse } from "@/components/how-to-use";
 import { ContactForm } from "@/components/contact-form";
 import { products } from "@/lib/products";
 
@@ -49,6 +50,8 @@ export default function HomePage() {
       <section id="products" className="scroll-mt-16">
         <ScrollProductShowcase product={product} />
       </section>
+
+      <HowToUse />
 
       <section id="about" className="scroll-mt-20 border-y bg-white/60">
         <div className="container-px grid gap-10 py-16 lg:grid-cols-2 lg:items-center">

@@ -18,6 +18,7 @@ import { useCart } from "@/components/cart-provider";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
+  { id: "how-to-use", href: "/#how-to-use", label: "How to Use" },
   { id: "about", href: "/#about", label: "About Us" },
   { id: "contact", href: "/#contact", label: "Contact Us" },
 ];

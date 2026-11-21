@@ -9,8 +9,16 @@ import { Input } from "@/components/ui/input";
 
 const exploreLinks = [
   { href: "/#products", label: "Products" },
+  { href: "/#how-to-use", label: "How to Use" },
   { href: "/#about", label: "About Us" },
   { href: "/#contact", label: "Contact Us" },
+];
+
+const legalLinks = [
+  { href: "/terms", label: "Terms & Conditions" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/refunds", label: "Refund Policy" },
+  { href: "/shipping", label: "Shipping & Delivery" },
 ];
 
 export function SiteFooter() {
@@ -100,12 +108,23 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t">
-        <div className="container-px flex flex-col items-center justify-between gap-2 py-5 text-xs text-muted-foreground sm:flex-row">
+        <div className="container-px flex flex-col items-center justify-between gap-4 py-5 text-xs text-muted-foreground lg:flex-row">
           <p>
             © {new Date().getFullYear()} Happy While Away. Made with love for
             happy dogs.
           </p>
-          <p>Secure payments · Free returns · Friendly support</p>
+          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            {legalLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="transition hover:text-foreground hover:underline"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>
