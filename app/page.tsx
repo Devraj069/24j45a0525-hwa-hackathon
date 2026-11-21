@@ -4,17 +4,21 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import {
   ArrowRight,
+  Check,
+  HeartHandshake,
+  Mail,
+  MapPin,
   Recycle,
   ShieldCheck,
-  Truck,
-  HeartHandshake,
-  Star,
-  Check,
   Sparkles,
+  Star,
+  Truck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductVisual } from "@/components/product-visual";
-import { getFeaturedProducts, products } from "@/lib/products";
+import { ScrollProductShowcase } from "@/components/scroll-product-showcase";
+import { ContactForm } from "@/components/contact-form";
+import { products } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 
 const fadeUp = {
@@ -22,7 +26,7 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
-const valueProps = [
+const aboutValues = [
   {
     icon: Recycle,
     title: "Reusable by design",
@@ -31,12 +35,7 @@ const valueProps = [
   {
     icon: ShieldCheck,
     title: "Safe materials",
-    text: "Non-toxic, food-grade and vet-friendly materials your dog can trust.",
-  },
-  {
-    icon: Truck,
-    title: "Fast free delivery",
-    text: "Free shipping over ₹1,499, dispatched within 24 hours.",
+    text: "Non-toxic, food-grade and vet-friendly materials dogs can trust.",
   },
   {
     icon: HeartHandshake,
@@ -45,45 +44,15 @@ const valueProps = [
   },
 ];
 
-const steps = [
-  {
-    title: "Twist & fill",
-    text: "Open the chamber and add kibble or treats — 1 to 2 cups.",
-  },
-  {
-    title: "Set difficulty",
-    text: "Slide to small, medium or large openings for your dog's level.",
-  },
-  {
-    title: "Lock & roll",
-    text: "Snap it shut and let the rolling puzzle begin.",
-  },
-  {
-    title: "Refill & repeat",
-    text: "Empty, rinse, refill. Endless happy, busy mealtimes.",
-  },
-];
-
-const testimonials = [
-  {
-    name: "Ananya",
-    dog: "with Mochi, Beagle",
-    text: "The puzzle ball buys me a calm 20 minutes every morning. Mochi is obsessed and eats so much slower now.",
-  },
-  {
-    name: "Rahul",
-    dog: "with Simba, Labrador",
-    text: "Finally a toy that survives Simba's chewing. The build quality is genuinely excellent.",
-  },
-  {
-    name: "Priya",
-    dog: "with Coco, Shih Tzu",
-    text: "The snuffle mat has become Coco's wind-down routine. Delivery was quick and the packaging was lovely.",
-  },
+const stats = [
+  ["10,000+", "Happy dogs"],
+  ["4.9/5", "Average rating"],
+  ["30-day", "Easy returns"],
+  ["100%", "Non-toxic"],
 ];
 
 export default function HomePage() {
-  const featured = getFeaturedProducts(8);
+  const product = products[0];
 
   return (
     <div className="overflow-hidden">
@@ -99,20 +68,19 @@ export default function HomePage() {
           >
             <span className="eyebrow">
               <Sparkles className="h-3.5 w-3.5" />
-              New enrichment collection
+              One product, done right
             </span>
             <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] text-brand-navy text-balance sm:text-5xl lg:text-6xl">
               Keep tails wagging while you&apos;re away.
             </h1>
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              Thoughtfully made toys, feeders and comfort essentials that keep
-              your dog happily busy, calm and cared for — even when you&apos;re
-              not home.
+              The PawQuest Puzzle Ball turns mealtime into twenty minutes of
+              happy, slow-eating play — even when you&apos;re not home.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className="rounded-full px-7 text-base">
-                <Link href="/products">
-                  Shop all products
+                <Link href="#products">
+                  Explore PawQuest
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
@@ -122,9 +90,7 @@ export default function HomePage() {
                 variant="outline"
                 className="rounded-full border-brand/30 bg-white/60 px-7 text-base"
               >
-                <Link href="/products/pawquest-puzzle-ball">
-                  Meet PawQuest
-                </Link>
+                <Link href="#contact">Talk to us</Link>
               </Button>
             </div>
 
@@ -137,10 +103,6 @@ export default function HomePage() {
                 <Truck className="h-4 w-4 text-primary" />
                 Free shipping over ₹1,499
               </span>
-              <span className="flex items-center gap-1.5 font-semibold">
-                <Recycle className="h-4 w-4 text-emerald-600" />
-                Reusable by design
-              </span>
             </div>
           </motion.div>
 
@@ -152,9 +114,9 @@ export default function HomePage() {
           >
             <div className="relative aspect-square rounded-[2.75rem] bg-gradient-to-br from-brand-sky via-white to-brand-light/40 p-5 shadow-2xl shadow-brand/20 ring-1 ring-white/70">
               <ProductVisual
-                emoji="🎾"
-                accent="#4a76b8"
-                name="PawQuest Puzzle Ball"
+                emoji={product.emoji}
+                accent={product.accent}
+                name={product.name}
                 className="h-full w-full"
                 emojiClassName="text-[9rem] sm:text-[11rem]"
               />
@@ -174,26 +136,6 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.6,
-              }}
-              className="absolute -right-3 bottom-10 rounded-2xl bg-white px-4 py-3 shadow-xl sm:-right-6"
-            >
-              <div className="flex items-center gap-1 text-amber-400">
-                {[0, 1, 2, 3, 4].map((star) => (
-                  <Star key={star} className="h-3.5 w-3.5 fill-current" />
-                ))}
-              </div>
-              <p className="mt-1 text-xs font-semibold text-muted-foreground">
-                214 happy reviews
-              </p>
-            </motion.div>
-
-            <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{
                 duration: 4.5,
@@ -203,7 +145,7 @@ export default function HomePage() {
               }}
               className="absolute -bottom-3 left-10 rounded-full bg-brand-navy px-4 py-2 text-sm font-bold text-white shadow-lg"
             >
-              {formatPrice(1299)}
+              {formatPrice(product.price)}
             </motion.div>
           </motion.div>
         </div>
@@ -211,12 +153,7 @@ export default function HomePage() {
 
       <section className="border-y bg-white/60">
         <div className="container-px grid grid-cols-2 gap-6 py-6 text-center md:grid-cols-4">
-          {[
-            ["10,000+", "Happy dogs"],
-            ["4.9/5", "Average rating"],
-            ["30-day", "Easy returns"],
-            ["100%", "Non-toxic materials"],
-          ].map(([value, label]) => (
+          {stats.map(([value, label]) => (
             <div key={label}>
               <p className="font-display text-2xl font-extrabold text-brand-navy">
                 {value}
@@ -229,170 +166,108 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container-px py-6">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
+      <section id="products" className="scroll-mt-16">
+        <ScrollProductShowcase product={product} />
+      </section>
+
+      <section id="about" className="scroll-mt-20 border-y bg-white/60">
+        <div className="container-px grid gap-10 py-16 lg:grid-cols-2 lg:items-center">
           <motion.div
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeUp}
           >
-            <ProductVisual
-              emoji="🎾"
-              accent="#4a76b8"
-              name="PawQuest Puzzle Ball"
-              className="aspect-square w-full rounded-[2.5rem]"
-              emojiClassName="text-[9rem]"
-            />
-          </motion.div>
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={fadeUp}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="eyebrow">The one and only</span>
+            <span className="eyebrow">About us</span>
             <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
-              The PawQuest Puzzle Ball
+              Made by dog people, for dog people.
             </h2>
-            <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-              {featured[0].short}
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              Happy While Away began with one simple wish: to leave our dogs
+              happily busy instead of bored and anxious while we were out.
+              Instead of a catalogue of everything, we make one thing
+              exceptionally well.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Button asChild size="lg" className="rounded-full px-7">
-                <Link href="/products/pawquest-puzzle-ball">
-                  Meet the product <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full border-brand/30 bg-white/60 px-7">
-                <Link href="/products">Shop all</Link>
-              </Button>
-            </div>
+            <p className="mt-3 leading-relaxed text-muted-foreground">
+              Every PawQuest is designed with vets, tested by real chewers and
+              built from safe, reusable materials — so it earns its place in
+              your home for years.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-4">
+            {aboutValues.map((value, index) => (
+              <motion.div
+                key={value.title}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-60px" }}
+                variants={fadeUp}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="flex items-start gap-4 rounded-3xl border bg-card p-5 shadow-sm"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-secondary text-primary">
+                  <value.icon className="h-6 w-6" />
+                </span>
+                <div>
+                  <h3 className="font-display text-lg font-bold">
+                    {value.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {value.text}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="scroll-mt-20">
+        <div className="container-px grid gap-10 py-16 lg:grid-cols-2 lg:items-start">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
+          >
+            <span className="eyebrow">Contact us</span>
+            <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+              Questions? We&apos;re all ears.
+            </h2>
+            <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
+              Sizing, shipping, or just want to say hi — send a message and a
+              real human will get back to you within one working day.
+            </p>
+            <ul className="mt-6 space-y-4 text-sm">
+              <li className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary">
+                  <Mail className="h-5 w-5" />
+                </span>
+                <span className="font-semibold">hello@happywhileaway.com</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary">
+                  <MapPin className="h-5 w-5" />
+                </span>
+                <span className="font-semibold">Hyderabad, India</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <ContactForm />
           </motion.div>
         </div>
       </section>
 
-      <section className="container-px py-16">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {valueProps.map((prop, index) => (
-            <motion.div
-              key={prop.title}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={fadeUp}
-              transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="rounded-3xl border bg-card p-6 shadow-sm"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary text-primary">
-                <prop.icon className="h-6 w-6" />
-              </span>
-              <h3 className="mt-4 font-display text-lg font-bold">
-                {prop.title}
-              </h3>
-              <p className="mt-1 text-sm text-muted-foreground">{prop.text}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <section className="container-px pb-8">
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={fadeUp}
-          transition={{ duration: 0.6 }}
-          className="overflow-hidden rounded-[2.5rem] bg-brand-navy text-white"
-        >
-          <div className="grid items-center gap-10 p-8 md:p-12 lg:grid-cols-2">
-            <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand-light">
-                Star product
-              </span>
-              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight sm:text-4xl">
-                The PawQuest Puzzle Ball
-              </h2>
-              <p className="mt-4 max-w-lg text-white/70">
-                One clever ball turns mealtime into 20 minutes of rewarding,
-                slow-eating play. Refill, wash, repeat — for years.
-              </p>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2">
-                {steps.map((step, index) => (
-                  <div key={step.title} className="flex gap-3">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-light font-display text-sm font-extrabold text-brand-navy">
-                      {index + 1}
-                    </span>
-                    <div>
-                      <p className="font-bold">{step.title}</p>
-                      <p className="text-sm text-white/60">{step.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <Button
-                asChild
-                size="lg"
-                className="mt-8 rounded-full bg-white px-7 text-base text-brand-navy hover:bg-brand-light"
-              >
-                <Link href="/products/pawquest-puzzle-ball">
-                  Shop the PawQuest
-                </Link>
-              </Button>
-            </div>
-
-            <div className="relative mx-auto w-full max-w-sm">
-              <div className="aspect-square rounded-[2rem] bg-gradient-to-br from-white/20 to-white/5 p-5 ring-1 ring-white/20">
-                <ProductVisual
-                  emoji="🎾"
-                  accent="#a9c9ea"
-                  name="PawQuest Puzzle Ball"
-                  className="h-full w-full"
-                  emojiClassName="text-[8rem]"
-                />
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      <section className="container-px py-16">
-        <div className="text-center">
-          <span className="eyebrow">Happy tails</span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
-            Dog parents love us
-          </h2>
-        </div>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {testimonials.map((review, index) => (
-            <motion.figure
-              key={review.name}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={fadeUp}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="rounded-3xl border bg-card p-6 shadow-sm"
-            >
-              <div className="flex items-center gap-1 text-amber-400">
-                {[0, 1, 2, 3, 4].map((star) => (
-                  <Star key={star} className="h-4 w-4 fill-current" />
-                ))}
-              </div>
-              <blockquote className="mt-3 text-sm leading-relaxed text-foreground/80">
-                “{review.text}”
-              </blockquote>
-              <figcaption className="mt-4 text-sm">
-                <span className="font-bold">{review.name}</span>
-                <span className="text-muted-foreground"> {review.dog}</span>
-              </figcaption>
-            </motion.figure>
-          ))}
-        </div>
-      </section>
-
-      <section className="container-px pb-4">
+      <section className="container-px pb-16">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brand-sky via-white to-brand-light/40 px-6 py-14 text-center ring-1 ring-white/70">
           <div className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-brand-light/40 blur-2xl" />
           <div className="pointer-events-none absolute -bottom-12 right-0 h-48 w-48 rounded-full bg-brand/20 blur-2xl" />
@@ -402,26 +277,17 @@ export default function HomePage() {
               Ready to make their day?
             </h2>
             <p className="mt-3 text-muted-foreground">
-              Join 10,000+ happy dogs and their people. Free shipping over
-              ₹1,499 and a 30-day happiness promise.
+              Free shipping over ₹1,499 and a 30-day happiness promise.
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="mt-6 rounded-full px-8 text-base"
-            >
-              <Link href="/products">
-                Start shopping
+            <Button asChild size="lg" className="mt-6 rounded-full px-8 text-base">
+              <Link href={`/products/${product.slug}`}>
+                Shop the PawQuest
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </div>
         </div>
       </section>
-
-      <div className="container-px pb-10 pt-8 text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-        {products.length} thoughtfully made products · Made for happy dogs
-      </div>
     </div>
   );
 }

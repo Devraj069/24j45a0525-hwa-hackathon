@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Menu, ShoppingBag, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, ShoppingBag } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -14,32 +12,20 @@ import {
 } from "@/components/ui/sheet";
 import { CartDrawer } from "@/components/cart-drawer";
 import { useCart } from "@/components/cart-provider";
-import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/products", label: "Shop all" },
-  { href: "/products?category=Toys", label: "Toys" },
-  { href: "/products?category=Feeders", label: "Feeders" },
-  { href: "/products?category=Beds%20%26%20Comfort", label: "Beds" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#products", label: "Products" },
+  { href: "/#about", label: "About Us" },
+  { href: "/#contact", label: "Contact Us" },
 ];
 
 export function SiteHeader() {
   const { count, isReady } = useCart();
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
 
   return (
     <>
-      <div className="bg-brand-navy text-white">
-        <div className="container-px flex items-center justify-center gap-2 py-2 text-center text-xs font-semibold tracking-wide sm:text-sm">
-          <Sparkles className="h-3.5 w-3.5 text-brand-light" />
-          Free shipping over ₹1,499 · 30-day happy-pup returns
-        </div>
-      </div>
-
       <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
         <div className="container-px flex h-16 items-center justify-between gap-4 md:h-20">
           <div className="flex items-center gap-2">
@@ -65,45 +51,30 @@ export function SiteHeader() {
           </div>
 
           <nav className="hidden items-center gap-1 lg:flex">
-            {navLinks.map((link) => {
-              const isActive =
-                link.href === "/products"
-                  ? pathname === "/products"
-                  : pathname === link.href.split("?")[0] &&
-                    link.href.includes("?");
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={cn(
-                    "rounded-full px-3.5 py-2 text-sm font-bold text-foreground/70 transition hover:bg-secondary hover:text-foreground",
-                    isActive && "bg-secondary text-foreground"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="rounded-full px-4 py-2 text-sm font-bold text-foreground/70 transition hover:bg-secondary hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
-          <div className="flex items-center gap-1.5">
-            <Button asChild variant="ghost" className="hidden sm:inline-flex">
-              <Link href="/products">Shop</Link>
-            </Button>
-            <button
-              type="button"
-              onClick={() => setCartOpen(true)}
-              className="relative flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm transition hover:bg-primary/90"
-              aria-label="Open cart"
-            >
-              <ShoppingBag className="h-5 w-5" />
-              {isReady && count > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-navy px-1 text-[11px] font-extrabold text-white ring-2 ring-background">
-                  {count}
-                </span>
-              )}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setCartOpen(true)}
+            className="relative flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm transition hover:bg-primary/90"
+            aria-label="Open cart"
+          >
+            <ShoppingBag className="h-5 w-5" />
+            {isReady && count > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-navy px-1 text-[11px] font-extrabold text-white ring-2 ring-background">
+                {count}
+              </span>
+            )}
+          </button>
         </div>
       </header>
 
@@ -127,14 +98,6 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-            <Button
-              asChild
-              className="mt-3"
-              size="lg"
-              onClick={() => setMenuOpen(false)}
-            >
-              <Link href="/products">Shop all products</Link>
-            </Button>
           </nav>
         </SheetContent>
       </Sheet>

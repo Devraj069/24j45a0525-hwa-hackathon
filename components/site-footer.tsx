@@ -7,18 +7,10 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const shopLinks = [
-  { href: "/products", label: "All products" },
-  { href: "/products?category=Toys", label: "Toys" },
-  { href: "/products?category=Feeders", label: "Feeders" },
-  { href: "/products?category=Beds%20%26%20Comfort", label: "Beds" },
-  { href: "/products?category=Grooming", label: "Grooming" },
-];
-
-const companyLinks = [
-  { href: "/about", label: "Our story" },
-  { href: "/contact", label: "Contact us" },
-  { href: "/products", label: "Shop" },
+const exploreLinks = [
+  { href: "/#products", label: "Products" },
+  { href: "/#about", label: "About Us" },
+  { href: "/#contact", label: "Contact Us" },
 ];
 
 export function SiteFooter() {
@@ -35,8 +27,8 @@ export function SiteFooter() {
   }
 
   return (
-    <footer className="mt-20 border-t bg-brand-sky/40">
-      <div className="container-px grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-10 border-t bg-brand-sky/40">
+      <div className="container-px grid gap-10 py-14 md:grid-cols-3">
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
@@ -47,8 +39,8 @@ export function SiteFooter() {
             </span>
           </div>
           <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-            Joyful, useful essentials that keep your dog happy, busy and
-            comfortable — even while you&apos;re away.
+            One thoughtfully made puzzle ball that keeps your dog happy, busy
+            and slow-eating — even while you&apos;re away.
           </p>
           <div className="flex gap-2">
             {[Instagram, Facebook, Twitter].map((Icon, index) => (
@@ -65,28 +57,10 @@ export function SiteFooter() {
 
         <div>
           <h3 className="font-display text-sm font-bold uppercase tracking-widest text-brand-navy">
-            Shop
+            Explore
           </h3>
           <ul className="mt-4 space-y-2.5 text-sm">
-            {shopLinks.map((link) => (
-              <li key={link.label}>
-                <Link
-                  href={link.href}
-                  className="text-muted-foreground transition hover:text-foreground"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-widest text-brand-navy">
-            Company
-          </h3>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            {companyLinks.map((link) => (
+            {exploreLinks.map((link) => (
               <li key={link.label}>
                 <Link
                   href={link.href}
