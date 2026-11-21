@@ -132,8 +132,8 @@ export default function HomePage() {
                 variant="outline"
                 className="rounded-full border-brand/30 bg-white/60 px-7 text-base"
               >
-                <Link href="/products/refillable-puzzle-feeder-ball">
-                  Meet the Puzzle Ball
+                <Link href="/products/pawquest-puzzle-ball">
+                  Meet PawQuest
                 </Link>
               </Button>
             </div>
@@ -164,7 +164,7 @@ export default function HomePage() {
               <ProductVisual
                 emoji="🎾"
                 accent="#4a76b8"
-                name="Refillable Puzzle Feeder Ball"
+                name="PawQuest Puzzle Ball"
                 className="h-full w-full"
                 emojiClassName="text-[9rem] sm:text-[11rem]"
               />
@@ -353,7 +353,7 @@ export default function HomePage() {
                 Star product
               </span>
               <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight sm:text-4xl">
-                The Refillable Puzzle Feeder Ball
+                The PawQuest Puzzle Ball
               </h2>
               <p className="mt-4 max-w-lg text-white/70">
                 One clever ball turns mealtime into 20 minutes of rewarding,
@@ -377,9 +377,8 @@ export default function HomePage() {
                 size="lg"
                 className="mt-8 rounded-full bg-white px-7 text-base text-brand-navy hover:bg-brand-light"
               >
-                <Link href="/products/refillable-puzzle-feeder-ball">
-                  Shop the Puzzle Ball
-                  <ArrowRight className="h-4 w-4" />
+                <Link href="/products/pawquest-puzzle-ball">
+                  Shop the PawQuest
                 </Link>
               </Button>
             </div>
@@ -389,7 +388,7 @@ export default function HomePage() {
                 <ProductVisual
                   emoji="🎾"
                   accent="#a9c9ea"
-                  name="Refillable Puzzle Feeder Ball"
+                  name="PawQuest Puzzle Ball"
                   className="h-full w-full"
                   emojiClassName="text-[8rem]"
                 />

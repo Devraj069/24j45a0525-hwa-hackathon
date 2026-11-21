@@ -1,12 +1,12 @@
-# Refillable Puzzle Feeder Ball — Product Documentation
+# PawQuest Puzzle Ball — Product Documentation
 
 ## 1. Product Overview
 
-**Name:** Refillable Puzzle Feeder Ball
+**Name:** PawQuest Puzzle Ball
 **Category:** Dog enrichment toy / slow-feeder
 **One-liner:** A durable, refillable rubber ball that turns mealtime into 15–30 minutes of active, rewarding play.
 
-The Refillable Puzzle Feeder Ball is a reusable enrichment toy for dogs. Owners twist it open, fill the inner chamber with kibble or treats, choose a difficulty setting, and lock it shut. As the dog rolls, nudges, and paws the ball, food drops out through adjustable openings. The dog stays happily busy until the chamber is empty — then the owner refills it and the play starts again.
+The PawQuest Puzzle Ball is a reusable enrichment toy for dogs. Owners twist it open, fill the inner chamber with kibble or treats, choose a difficulty setting, and lock it shut. As the dog rolls, nudges, and paws the ball, food drops out through adjustable openings. The dog stays happily busy until the chamber is empty — then the owner refills it and the play starts again.
 
 Unlike disposable toys, this is designed to be reused for years: it is refillable, washable, and chew-resistant.
 
@@ -95,9 +95,9 @@ One reusable toy that solves all four:
 
 | Product | Size | Price |
 |---|---|---|
-| Puzzle Feeder Ball — Small | 6 cm | $14.99 |
-| Puzzle Feeder Ball — Medium | 8 cm | $19.99 |
-| Puzzle Feeder Ball — Large | 10 cm | $24.99 |
+| PawQuest Puzzle Ball — Small | 6 cm | $14.99 |
+| PawQuest Puzzle Ball — Medium | 8 cm | $19.99 |
+| PawQuest Puzzle Ball — Large | 10 cm | $24.99 |
 | Starter Kit (Ball + Treat Sample Pack) | Medium | $27.99 |
 | Refill Treat Pack (add-on) | — | $8.99 |
 
