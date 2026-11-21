@@ -1,7 +1,9 @@
 node_modules/
+.next/
 .hwa/
 .vercel/
 .env*
+opencode.json
 init.py
 init (*).py
 submit.py

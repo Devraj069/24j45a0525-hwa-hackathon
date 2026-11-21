@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 216 40% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 216 40% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 40% 18%;
+    --primary: 216 43% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 211 61% 92%;
+    --secondary-foreground: 216 44% 28%;
+    --muted: 40 22% 92%;
+    --muted-foreground: 216 14% 42%;
+    --accent: 211 61% 85%;
+    --accent-foreground: 216 44% 24%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 216 24% 88%;
+    --input: 216 24% 88%;
+    --ring: 216 43% 51%;
+    --radius: 0.9rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  ::selection {
+    background-color: #a9c9ea;
+    color: #1f3355;
+  }
+}
+
+@layer components {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .container-px {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-bold uppercase tracking-widest text-secondary-foreground;
+  }
+
+  .blob-mask {
+    border-radius: 62% 38% 46% 54% / 54% 44% 56% 46%;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
