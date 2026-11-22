@@ -161,7 +161,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
     <div ref={rootRef} className="relative">
       <div
         ref={pinRef}
-        className="relative flex h-[100svh] items-center overflow-hidden bg-background"
+        className="relative flex h-[100svh] items-center overflow-hidden bg-background pt-[88px] lg:pt-0"
       >
         <div className="container-px relative grid w-full items-center gap-5 lg:block">
           <div className="pointer-events-none relative z-20 flex justify-center lg:absolute lg:inset-0 lg:items-center">
