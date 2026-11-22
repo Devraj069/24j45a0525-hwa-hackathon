@@ -118,18 +118,9 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
       gsap.set(image, { xPercent: 0, rotation: 0, scale: 1, opacity: 1 });
       if (reduced) return;
 
-      gsap.set(image, { xPercent: 180, rotation: 220, scale: 1, opacity: 0 });
+       gsap.set(image, { xPercent: 180, rotation: 220, scale: 1, opacity: 0 });
 
-      ScrollTrigger.create({
-        trigger: root,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 0.55,
-        pin,
-        pinSpacing: true,
-        anticipatePin: 1,
-      });
-
-      const tl = gsap.timeline({
+       const tl = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
           trigger: root,
@@ -161,7 +152,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
     <div ref={rootRef} className="relative">
       <div
         ref={pinRef}
-        className="relative flex h-[100svh] items-center overflow-hidden bg-background pt-[88px] lg:pt-0"
+        className="relative flex min-h-[100svh] items-center overflow-hidden bg-background lg:h-[100svh]"
       >
         <div className="container-px relative grid w-full items-center gap-5 lg:block">
           <div className="pointer-events-none relative z-20 flex justify-center lg:absolute lg:inset-0 lg:items-center">
