@@ -34,7 +34,7 @@ const gallery = [
     src: "/pawquest-lifestyle.jpg",
     alt: "PawQuest Puzzle Ball with its treat box and a happy golden retriever",
     label: "Lifestyle",
-    fit: "object-cover",
+    fit: "object-contain p-4",
     thumb: "object-cover",
     bg: "#f3ece2",
   },

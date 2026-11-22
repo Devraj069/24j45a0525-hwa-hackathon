@@ -167,13 +167,13 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
           <div className="pointer-events-none relative z-20 flex justify-center lg:absolute lg:inset-0 lg:items-center">
             <div
               ref={imageRef}
-              className="w-[76vw] max-w-[290px] will-change-transform sm:max-w-[340px] lg:w-[54vw] lg:max-w-[620px]"
+              className="w-[80vw] max-w-[320px] will-change-transform sm:max-w-[360px] lg:w-[46vw] lg:max-w-[480px]"
             >
               <Image
                 src="/productpaw-v2.png"
                 alt={product.name}
-                width={612}
-                height={408}
+                width={389}
+                height={384}
                 priority
                 className="h-auto w-full drop-shadow-xl"
               />

@@ -46,8 +46,8 @@ export function ProductVisual({
         <Image
           src={imageSrc}
           alt={name}
-          width={612}
-          height={408}
+          width={389}
+          height={384}
           className="relative h-auto w-[76%] select-none drop-shadow-md transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3"
         />
       ) : (
