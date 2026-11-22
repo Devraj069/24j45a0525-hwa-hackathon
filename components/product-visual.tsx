@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 type ProductVisualProps = {
@@ -6,6 +7,7 @@ type ProductVisualProps = {
   name: string;
   className?: string;
   emojiClassName?: string;
+  imageSrc?: string;
 };
 
 export function ProductVisual({
@@ -14,6 +16,7 @@ export function ProductVisual({
   name,
   className,
   emojiClassName,
+  imageSrc,
 }: ProductVisualProps) {
   return (
     <div
@@ -39,14 +42,24 @@ export function ProductVisual({
         className="absolute inset-3 rounded-full border border-white/70"
         aria-hidden="true"
       />
-      <span
-        className={cn(
-          "relative select-none drop-shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3",
-          emojiClassName ?? "text-6xl"
-        )}
-      >
-        {emoji}
-      </span>
+      {imageSrc ? (
+        <Image
+          src={imageSrc}
+          alt={name}
+          width={612}
+          height={408}
+          className="relative h-auto w-[76%] select-none drop-shadow-md transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3"
+        />
+      ) : (
+        <span
+          className={cn(
+            "relative select-none drop-shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3",
+            emojiClassName ?? "text-6xl"
+          )}
+        >
+          {emoji}
+        </span>
+      )}
     </div>
   );
 }

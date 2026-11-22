@@ -65,7 +65,7 @@ export function OrderSuccess() {
           <PartyPopper className="h-3.5 w-3.5" />
           {paid ? "Payment received" : "Order placed"}
         </span>
-        <h1 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+        <h1 className="mt-3 font-display text-[2.1rem] font-extrabold leading-tight text-brand-navy sm:text-4xl">
           Thank you, {firstName}!
         </h1>
         <p className="mt-2 max-w-md text-muted-foreground">

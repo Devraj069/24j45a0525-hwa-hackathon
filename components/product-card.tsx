@@ -36,6 +36,7 @@ export function ProductCard({ product }: { product: Product }) {
           emoji={product.emoji}
           accent={product.accent}
           name={product.name}
+          imageSrc="/productpaw-v2.png"
           className="aspect-square w-full"
           emojiClassName="text-7xl"
         />

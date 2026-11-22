@@ -7,7 +7,6 @@ import { ArrowRight, Brain, Dumbbell, type LucideIcon } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
-import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/lib/products";
 
 const physicalBenefits = [
@@ -32,8 +31,8 @@ function BenefitBlock({
   items: string[];
 }) {
   return (
-    <div className="rounded-2xl border bg-card/90 p-3 shadow-sm backdrop-blur sm:p-4">
-      <p className="flex items-center gap-2 font-display text-sm font-bold text-brand-navy sm:text-base">
+    <div className="rounded-2xl border bg-card/90 p-3.5 shadow-sm backdrop-blur sm:p-4">
+      <p className="flex items-center gap-2 font-display text-base font-bold text-brand-navy">
         <span className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-primary">
           <Icon className="h-4 w-4" />
         </span>
@@ -43,7 +42,7 @@ function BenefitBlock({
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-2 text-xs leading-snug text-muted-foreground sm:text-sm"
+            className="flex items-start gap-2 text-[13px] leading-snug text-muted-foreground sm:text-sm"
           >
             <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary" />
             {item}
@@ -82,7 +81,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
       ScrollTrigger.create({
         trigger: root,
         start: "top top",
-        end: () => "+=" + window.innerHeight * 1.2,
+        end: () => "+=" + window.innerHeight * 0.55,
         pin,
         pinSpacing: true,
         anticipatePin: 1,
@@ -93,7 +92,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
         scrollTrigger: {
           trigger: root,
           start: "top 50%",
-          end: () => "+=" + window.innerHeight * 1.7,
+          end: () => "+=" + window.innerHeight * 1.05,
           scrub: 0.3,
           invalidateOnRefresh: true,
         },
@@ -106,23 +105,13 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
           xPercent: 34,
           rotation: 0,
           opacity: 1,
-          duration: 0.55,
+          duration: 0.5,
           ease: "power1.out",
         },
         0
       )
         // Hold ball at the right side (no further movement)
-        .to(image, { xPercent: 34, rotation: 0, duration: 1.15 }, 0.55);
-
-      // Pin the sticky element inside the root
-      ScrollTrigger.create({
-        trigger: root,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 1.2,
-        pin,
-        pinSpacing: true,
-        anticipatePin: 1,
-      });
+        .to(image, { xPercent: 34, rotation: 0, duration: 0.55 }, 0.5);
     });
 
     mm.add("(max-width: 1023px)", () => {
@@ -134,7 +123,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
       ScrollTrigger.create({
         trigger: root,
         start: "top top",
-        end: () => "+=" + window.innerHeight * 1.2,
+        end: () => "+=" + window.innerHeight * 0.55,
         pin,
         pinSpacing: true,
         anticipatePin: 1,
@@ -145,7 +134,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
         scrollTrigger: {
           trigger: root,
           start: "top 50%",
-          end: () => "+=" + window.innerHeight * 1.7,
+          end: () => "+=" + window.innerHeight * 1.05,
           scrub: 0.3,
           invalidateOnRefresh: true,
         },
@@ -157,12 +146,12 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
           xPercent: 0,
           rotation: 0,
           opacity: 1,
-          duration: 0.55,
+          duration: 0.5,
           ease: "power1.out",
         },
         0
       )
-        .to(image, { xPercent: 0, rotation: 0, duration: 1.15 }, 0.55);
+        .to(image, { xPercent: 0, rotation: 0, duration: 0.55 }, 0.5);
     });
 
     return () => mm.revert();
@@ -178,7 +167,7 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
           <div className="pointer-events-none relative z-20 flex justify-center lg:absolute lg:inset-0 lg:items-center">
             <div
               ref={imageRef}
-              className="w-[66vw] max-w-[250px] will-change-transform sm:max-w-[320px] lg:w-[54vw] lg:max-w-[620px]"
+              className="w-[76vw] max-w-[290px] will-change-transform sm:max-w-[340px] lg:w-[54vw] lg:max-w-[620px]"
             >
               <Image
                 src="/productpaw-v2.png"
@@ -192,10 +181,10 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
           </div>
 
           <div ref={contentRef} className="relative z-10 lg:w-[36rem]">
-            <h2 className="whitespace-nowrap font-display text-3xl font-extrabold leading-tight text-brand-navy sm:text-4xl lg:text-[2.75rem]">
+            <h2 className="whitespace-nowrap font-display text-[2rem] font-extrabold leading-tight text-brand-navy sm:text-4xl lg:text-[2.75rem]">
               {product.name}
             </h2>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground sm:mt-3 sm:text-base">
+            <p className="mt-2 max-w-md text-base leading-relaxed text-muted-foreground sm:mt-3 sm:text-base">
               A refillable puzzle feeder that hides kibble or treats inside. As
               your dog rolls and paws it, food drops out through adjustable
               openings — turning mealtime into active, rewarding play.
@@ -218,10 +207,10 @@ export function ScrollProductShowcase({ product }: { product: Product }) {
               <Button
                 asChild
                 size="lg"
-                className="rounded-full px-6 text-sm sm:text-base"
+                className="rounded-full px-7 text-base"
               >
                 <Link href={`/products/${product.slug}`}>
-                  Shop now · {formatPrice(product.price)}
+                  Buy Now
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>

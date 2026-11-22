@@ -57,7 +57,7 @@ export function ProductPurchase({ product }: { product: Product }) {
         </span>
       </div>
 
-      <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight text-brand-navy sm:text-4xl">
+      <h1 className="mt-3 font-display text-[2.1rem] font-extrabold leading-tight text-brand-navy sm:text-4xl">
         {product.name}
       </h1>
 
@@ -77,13 +77,13 @@ export function ProductPurchase({ product }: { product: Product }) {
         )}
       </div>
 
-      <p className="mt-4 leading-relaxed text-muted-foreground">
+      <p className="mt-4 text-base leading-relaxed text-muted-foreground">
         {product.description}
       </p>
 
       <ul className="mt-5 grid gap-2 sm:grid-cols-2">
         {product.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2 text-sm">
+          <li key={feature} className="flex items-start gap-2 text-[15px]">
             <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
               <Check className="h-3 w-3" />
             </span>
@@ -104,7 +104,7 @@ export function ProductPurchase({ product }: { product: Product }) {
               type="button"
               onClick={() => setSize(option)}
               className={cn(
-                "rounded-xl border px-4 py-2 text-sm font-bold transition",
+                "rounded-xl border px-5 py-2.5 text-sm font-bold transition",
                 size === option
                   ? "border-primary bg-primary text-primary-foreground"
                   : "border-border bg-background text-foreground/70 hover:border-primary/40"
@@ -121,7 +121,7 @@ export function ProductPurchase({ product }: { product: Product }) {
           <button
             type="button"
             onClick={() => setQuantity((value) => Math.max(1, value - 1))}
-            className="flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-secondary disabled:opacity-40"
+            className="flex h-10 w-10 items-center justify-center rounded-full transition hover:bg-secondary disabled:opacity-40"
             disabled={quantity <= 1}
             aria-label="Decrease quantity"
           >
@@ -131,7 +131,7 @@ export function ProductPurchase({ product }: { product: Product }) {
           <button
             type="button"
             onClick={() => setQuantity((value) => Math.min(20, value + 1))}
-            className="flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-secondary"
+            className="flex h-10 w-10 items-center justify-center rounded-full transition hover:bg-secondary"
             aria-label="Increase quantity"
           >
             <Plus className="h-4 w-4" />
@@ -141,7 +141,7 @@ export function ProductPurchase({ product }: { product: Product }) {
         <Button
           size="lg"
           onClick={handleAdd}
-          className="flex-1 rounded-full px-6 text-base"
+          className="h-12 flex-1 rounded-full px-6 text-base"
         >
           <ShoppingBag className="h-5 w-5" />
           Add to cart
@@ -150,7 +150,7 @@ export function ProductPurchase({ product }: { product: Product }) {
           size="lg"
           variant="outline"
           onClick={handleBuyNow}
-          className="flex-1 rounded-full px-6 text-base"
+          className="h-12 flex-1 rounded-full border-2 border-primary bg-primary/10 px-6 text-base font-extrabold text-primary shadow-sm transition hover:bg-primary hover:text-primary-foreground"
         >
           Buy now
         </Button>

@@ -38,10 +38,10 @@ export function HowToUse() {
           className="max-w-2xl"
         >
           <span className="eyebrow">How to use</span>
-          <h2 className="mt-4 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+          <h2 className="mt-4 font-display text-[2.1rem] font-extrabold leading-tight text-brand-navy sm:text-4xl">
             Four steps to snack-time play.
           </h2>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
             No batteries, no complicated parts. Fill it, lock it, drop it on
             the floor and let the fun begin.
           </p>
@@ -63,10 +63,10 @@ export function HowToUse() {
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary text-primary">
                 <step.icon className="h-6 w-6" />
               </span>
-              <h3 className="mt-4 font-display text-lg font-bold text-brand-navy">
+              <h3 className="mt-4 font-display text-xl font-bold text-brand-navy">
                 {step.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
                 {step.text}
               </p>
             </motion.article>

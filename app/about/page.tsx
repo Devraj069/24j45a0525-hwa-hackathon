@@ -68,7 +68,7 @@ export default function AboutPage() {
             </div>
           </div>
           <div>
-            <h2 className="font-display text-3xl font-extrabold text-brand-navy">
+            <h2 className="font-display text-[2.1rem] font-extrabold leading-tight text-brand-navy">
               Why we started
             </h2>
             <div className="mt-4 space-y-4 text-muted-foreground">
@@ -103,7 +103,7 @@ export default function AboutPage() {
       <section className="container-px py-16">
         <div className="text-center">
           <span className="eyebrow">What we stand for</span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+          <h2 className="mt-3 font-display text-[2.1rem] font-extrabold leading-tight text-brand-navy sm:text-4xl">
             Our promises to you and your dog
           </h2>
         </div>

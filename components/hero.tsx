@@ -35,7 +35,7 @@ export function Hero({ productSlug }: { productSlug: string }) {
   }, []);
 
   return (
-    <section className="relative flex min-h-[calc(100svh-5rem)] w-full items-center overflow-hidden md:min-h-[calc(100svh-6rem)]">
+    <section className="relative flex min-h-[calc(100svh-5.5rem)] w-full items-center overflow-hidden md:min-h-[calc(100svh-6rem)]">
       <div className="absolute inset-0">
         <video
           className="h-full w-full object-cover object-center"
@@ -56,21 +56,21 @@ export function Hero({ productSlug }: { productSlug: string }) {
       <div className="container-px relative w-full py-10">
         <h1
           ref={headlineRef}
-          className="max-w-3xl font-display text-4xl font-extrabold leading-[1.05] text-balance text-white drop-shadow-lg sm:text-5xl lg:text-6xl xl:text-7xl"
+          className="max-w-3xl font-display text-[2.65rem] font-extrabold leading-[1.03] text-balance text-white drop-shadow-lg sm:text-5xl lg:text-6xl xl:text-7xl"
         >
           Make Every Meal a little Adventure
         </h1>
-        <p className="mt-4 max-w-lg text-base leading-relaxed text-white/85 sm:text-lg">
+        <p className="mt-4 max-w-lg text-lg leading-relaxed text-white/85 sm:text-xl">
           Turn every roll into reward with PawQuest Puzzle Feeder Ball.
         </p>
-        <div className="mt-6">
+        <div className="mt-7">
           <Button
             asChild
             size="lg"
-            className="rounded-full bg-white px-8 text-base text-brand-navy shadow-xl hover:bg-brand-light"
+            className="h-12 rounded-full bg-white px-9 text-lg text-brand-navy shadow-xl hover:bg-brand-light"
           >
             <Link href={`/products/${productSlug}`}>
-              <ShoppingCart className="h-4 w-4" />
+              <ShoppingCart className="h-5 w-5" />
               Shop Now
             </Link>
           </Button>

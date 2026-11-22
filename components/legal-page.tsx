@@ -28,7 +28,7 @@ export function LegalPage({
       </Link>
 
       <div className="mt-6 max-w-3xl">
-        <h1 className="font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+        <h1 className="font-display text-[2.1rem] font-extrabold leading-tight text-brand-navy sm:text-4xl">
           {title}
         </h1>
         <p className="mt-3 leading-relaxed text-muted-foreground">{intro}</p>

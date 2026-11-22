@@ -66,6 +66,7 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
                       emoji={item.emoji}
                       accent={item.accent}
                       name={item.name}
+                      imageSrc="/productpaw-v2.png"
                       className="h-20 w-20 shrink-0"
                       emojiClassName="text-3xl"
                     />

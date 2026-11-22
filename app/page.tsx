@@ -61,7 +61,7 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeUp}
           >
-            <h2 className="font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+            <h2 className="font-display text-[2.1rem] font-extrabold leading-tight text-brand-navy sm:text-4xl">
               Made by dog people, for dog people.
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
@@ -86,16 +86,16 @@ export default function HomePage() {
                 viewport={{ once: true, margin: "-60px" }}
                 variants={fadeUp}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="flex items-start gap-4 rounded-3xl border bg-card p-5 shadow-sm"
+                className="flex items-start gap-4 rounded-3xl border bg-card p-6 shadow-sm"
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-secondary text-primary">
                   <value.icon className="h-6 w-6" />
                 </span>
                 <div>
-                  <h3 className="font-display text-lg font-bold">
+                  <h3 className="font-display text-xl font-bold">
                     {value.title}
                   </h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <p className="mt-1 text-[15px] leading-relaxed text-muted-foreground">
                     {value.text}
                   </p>
                 </div>
@@ -113,22 +113,22 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-60px" }}
             variants={fadeUp}
           >
-            <h2 className="font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+            <h2 className="font-display text-[2.1rem] font-extrabold leading-tight text-brand-navy sm:text-4xl">
               Questions? We&apos;re all ears.
             </h2>
             <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
               Sizing, shipping, or just want to say hi — send a message and a
               real human will get back to you within one working day.
             </p>
-            <ul className="mt-6 space-y-4 text-sm">
+            <ul className="mt-6 space-y-4 text-base">
               <li className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary text-primary">
                   <Mail className="h-5 w-5" />
                 </span>
                 <span className="font-semibold">hello@happywhileaway.com</span>
               </li>
               <li className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary text-primary">
                   <MapPin className="h-5 w-5" />
                 </span>
                 <span className="font-semibold">Hyderabad, India</span>
@@ -154,13 +154,13 @@ export default function HomePage() {
           <div className="pointer-events-none absolute -bottom-12 right-0 h-48 w-48 rounded-full bg-brand/20 blur-2xl" />
           <div className="relative mx-auto max-w-2xl">
             <span className="text-5xl">🐾</span>
-            <h2 className="mt-4 font-display text-3xl font-extrabold text-brand-navy sm:text-4xl">
+            <h2 className="mt-4 font-display text-[2.1rem] font-extrabold leading-tight text-brand-navy sm:text-4xl">
               Ready to make their day?
             </h2>
-            <p className="mt-3 text-muted-foreground">
+            <p className="mt-3 text-base text-muted-foreground">
               Free shipping over ₹1,499 and a 30-day happiness promise.
             </p>
-            <Button asChild size="lg" className="mt-6 rounded-full px-8 text-base">
+            <Button asChild size="lg" className="mt-6 h-12 rounded-full px-8 text-base">
               <Link href={`/products/${product.slug}`}>
                 Shop the PawQuest
                 <ArrowRight className="h-4 w-4" />

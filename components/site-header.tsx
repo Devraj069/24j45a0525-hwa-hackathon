@@ -60,7 +60,7 @@ export function SiteHeader() {
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
-        <div className="container-px flex h-20 items-center justify-between gap-4 md:h-24">
+        <div className="container-px flex h-[5.5rem] items-center justify-between gap-4 md:h-24">
           <Link
             href="/"
             className="flex shrink-0 items-center"
@@ -72,7 +72,7 @@ export function SiteHeader() {
               width={240}
               height={112}
               priority
-              className="h-12 w-auto mix-blend-multiply md:h-16"
+              className="h-14 w-auto mix-blend-multiply md:h-16"
             />
           </Link>
 
@@ -109,7 +109,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setCartOpen(true)}
-              className="relative flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm transition hover:bg-primary/90"
+              className="relative flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm transition hover:bg-primary/90 md:h-11 md:w-11"
               aria-label="Open cart"
             >
               <ShoppingCart className="h-5 w-5" />
@@ -123,7 +123,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="flex h-11 w-11 items-center justify-center rounded-full text-foreground transition hover:bg-secondary md:hidden"
+              className="flex h-12 w-12 items-center justify-center rounded-full text-foreground transition hover:bg-secondary md:hidden"
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />

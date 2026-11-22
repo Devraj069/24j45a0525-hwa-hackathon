@@ -423,6 +423,7 @@ export function CheckoutView() {
                 emoji={item.emoji}
                 accent={item.accent}
                 name={item.name}
+                imageSrc="/productpaw-v2.png"
                 className="h-14 w-14 shrink-0"
                 emojiClassName="text-2xl"
               />

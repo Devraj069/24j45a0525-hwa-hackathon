@@ -73,6 +73,7 @@ export function CartView() {
                 emoji={item.emoji}
                 accent={item.accent}
                 name={item.name}
+                imageSrc="/productpaw-v2.png"
                 className="h-24 w-24 shrink-0"
                 emojiClassName="text-4xl"
               />
