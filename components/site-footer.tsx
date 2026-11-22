@@ -12,6 +12,7 @@ const exploreLinks = [
   { href: "/#how-to-use", label: "How to Use" },
   { href: "/#about", label: "About Us" },
   { href: "/#contact", label: "Contact Us" },
+  { href: "/track", label: "Track Your Order" },
 ];
 
 const legalLinks = [

@@ -16,13 +16,34 @@ import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/utils";
 import type { Order } from "@/lib/types";
 
+const statusLabels: Record<string, string> = {
+  placed: "Placed",
+  confirmed: "Confirmed",
+  packing: "Packing",
+  shipped: "Shipped",
+  in_transit: "In transit",
+  delivered: "Delivered",
+  cancelled: "Cancelled",
+};
 const statusStyles: Record<string, string> = {
   placed: "bg-amber-100 text-amber-800",
-  confirmed: "bg-emerald-100 text-emerald-800",
+  confirmed: "bg-sky-100 text-sky-800",
+  packing: "bg-violet-100 text-violet-800",
+  shipped: "bg-indigo-100 text-indigo-800",
+  in_transit: "bg-blue-100 text-blue-800",
+  delivered: "bg-emerald-100 text-emerald-800",
   cancelled: "bg-rose-100 text-rose-800",
 };
 
-const statusOptions: Order["status"][] = ["placed", "confirmed", "cancelled"];
+const statusOptions: Order["status"][] = [
+  "placed",
+  "confirmed",
+  "packing",
+  "shipped",
+  "in_transit",
+  "delivered",
+  "cancelled",
+];
 
 export function AdminOrders() {
   const [authed, setAuthed] = useState<boolean | null>(null);
@@ -272,6 +293,10 @@ export function AdminOrders() {
           <option value="all">All statuses</option>
           <option value="placed">Placed</option>
           <option value="confirmed">Confirmed</option>
+          <option value="packing">Packing</option>
+          <option value="shipped">Shipped</option>
+          <option value="in_transit">In transit</option>
+          <option value="delivered">Delivered</option>
           <option value="cancelled">Cancelled</option>
         </select>
       </div>
@@ -308,8 +333,8 @@ export function AdminOrders() {
                 <span
                   className={`rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-wide ${statusStyles[order.status] ?? statusStyles.placed}`}
                 >
-                  {order.status}
-                </span>
+              {statusLabels[order.status] ?? order.status}
+            </span>
               </div>
 
               <div className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
@@ -370,7 +395,7 @@ export function AdminOrders() {
                 >
                   {statusOptions.map((s) => (
                     <option key={s} value={s}>
-                      {s}
+                      {statusLabels[s]}
                     </option>
                   ))}
                 </select>

@@ -41,7 +41,14 @@ export type Order = {
   total: number;
   customer: Customer;
   payment: PaymentInfo;
-    status: "placed" | "confirmed" | "cancelled";
+  status:
+    | "placed"
+    | "confirmed"
+    | "packing"
+    | "shipped"
+    | "in_transit"
+    | "delivered"
+    | "cancelled";
   createdAt: string;
 };
 

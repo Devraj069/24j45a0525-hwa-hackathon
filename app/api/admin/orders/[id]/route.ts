@@ -36,11 +36,16 @@ export async function PUT(
   const body = (await request.json().catch(() => ({}))) as { status?: string };
 
   const nextStatus = body.status;
-  if (
-    nextStatus !== "placed" &&
-    nextStatus !== "confirmed" &&
-    nextStatus !== "cancelled"
-  ) {
+  const valid = [
+    "placed",
+    "confirmed",
+    "packing",
+    "shipped",
+    "in_transit",
+    "delivered",
+    "cancelled",
+  ];
+  if (!nextStatus || !valid.includes(nextStatus)) {
     return NextResponse.json({ ok: false, error: "Invalid status" }, { status: 400 });
   }
 
